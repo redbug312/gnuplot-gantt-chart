@@ -1,43 +1,61 @@
 #!/usr/bin/env gnuplot
 reset session
-set term qt noraise
-# set term pngcairo enhanced
-# set output 'gantt.png'
+# set term qt noraise font 'Liberation Sans, 10'
+set term pngcairo font 'Liberation Sans, 10'
+set output 'gantt.png'
 
 $Data << EOD
-0       0       0       1       0       0       5   5   1
-0       1       0       1       0       2       13  13  2
-0       2       0       1       0       10      15  15  3
-0       3       0       1       30      30      35  35  1
-1       0       0       2       0       15      24  24  1
-1       1       0       2       5       24      30  38  1
-1       1       0       2       5       35      38  38  1
-1       2       0       2       10      38      47  47  1
-1       3       0       2       30      47      56  56  1
+tsn0   0   link02   0   0   0   2   4
+tsn0   0   link21   0   2   2   4   4
+tsn1   0   link02   0   0   2   4   6
+tsn1   0   link21   0   4   4   6   6
+avb1   0   link02   1   0   4   12  20
+avb1   0   link21   1   12  12  20  20
 EOD
 
-boxHalfHeight     = 0.2
-boxLeftOvershoot  = 0.1
-boxRightOvershoot = 0.08
-
-set offsets 0,0,0.5-boxHalfHeight,0.5
-set xrange [-1:]
-set xtics 5
+set colorsequence podo
+set title 'Gannt Chart for Schedule'
+set offsets 0.5,0.5,0.5,0.5
+set xtics 4
 set grid x y
-unset key
+set key right bottom
 
+maxFramePerStream = 8  # NOTE modify this value to display more frame
+
+boxHeight         = 1.0 / maxFramePerStream
+boxLeftOvershoot  = 1.0 / maxFramePerStream
+boxRightOvershoot = 1.0 / maxFramePerStream * 1.5
+
+# NOTE modify the following values only when needed
 
 set style fill transparent solid 0.5 border lc black
 set style arrow 1 lc var filled size screen 0.03,15,90
 set style arrow 2 lc black empty size screen 0.03,15,90
 set style arrow 3 lc black nohead
 set style arrow 4 lc black nohead
+set key noautotitle
 
-set colorsequence podo
+streams = ''
+stream_add(d) = strstrt(streams, strcol(d)) ? '' : streams=streams.' '.strcol(d)
+s(w) = words(substr(streams, 0, strstrt(streams, strcol(w))-1))
+
+links = ''
+link_add(d) = strstrt(links, strcol(d)) ? '' : links=links.' '.strcol(d)
+L(w) = words(substr(links, 0, strstrt(links, strcol(w))-1))
 
 plot $Data \
-       u 5:($1-boxHalfHeight):(0):(2*boxHalfHeight+$9*boxLeftOvershoot):2 with vectors as 1, \
-    '' u 5:($1-boxHalfHeight):(0):(2*boxHalfHeight+$9*boxLeftOvershoot) with vectors as 2, \
-    '' u 5:($1-boxHalfHeight):($8-$5):(0) with vectors as 3, \
-    '' u 8:($1+boxHalfHeight):(0):(boxRightOvershoot) with vectors as 4, \
-    '' u 5:1:6:7:($1-boxHalfHeight):($1+boxHalfHeight):2:ytic(1) with boxxyerror lc var
+    u (stream_add(1), link_add(3), 0):(s(1)):ytic(1) lc bgnd, \
+ '' u 5:(s(1)):6:7:(s(1)-($2+1)*boxHeight):(s(1)-$2*boxHeight):(L(3)+1) with boxxyerror lc var, \
+ '' u 5:(s(1)-($2+1)*boxHeight):(0):(boxLeftOvershoot):(L(3)+1) with vectors as 1, \
+ '' u 5:(s(1)-($2+1)*boxHeight):(0):(boxLeftOvershoot) with vectors as 2, \
+ '' u 5:(s(1)-($2+1)*boxHeight):($7-$5):(0) with vectors as 3, \
+ '' u 8:(s(1)-($2+1)*boxHeight):(0):(boxRightOvershoot) with vectors as 4, \
+ for [i=1:words(links)] NaN with boxes lc i title word(links, i)
+
+# plot 0 to add stream names and show them on ytics
+# plot 1 for windows (boxes)
+# plot 2 for arrival up-arrows
+# plot 3 for arrival up-arrows again, but only border this time
+# plot 4 for bottom lines, connecting from up-arrows to window-start
+# plot 5 for little primes which denoting the finish of a stream frame
+# plot 6 to show link names on key
