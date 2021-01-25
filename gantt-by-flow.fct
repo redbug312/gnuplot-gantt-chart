@@ -1,0 +1,31 @@
+set style fill transparent solid 0.3 border lc black
+set style arrow 1 lc var filled size screen 0.03,15,90
+set style arrow 2 lc black empty size screen 0.03,15,90
+set style arrow 3 lc black nohead
+set style arrow 4 lc black nohead
+set key noautotitle
+
+
+flows = ''
+flow_append(d) = strstrt(flows, strcol(d)) ? '' : flows=flows.' '.strcol(d)
+flow_id(w) = words(substr(flows, 0, strstrt(flows, strcol(w))-1))
+flow = '(flow_id(1))'  # used as macro
+
+links = ''
+link_append(d) = strstrt(links, strcol(d)) ? '' : links=links.' '.strcol(d)
+link_id(w) = words(substr(links, 0, strstrt(links, strcol(w))-1))
+link = '(link_id(4))'  # used as macro
+
+
+preprocess = '(flow_append(1), link_append(4), NaN)'
+baseline = '(@flow-($3+1)*boxHeight)'
+
+
+gantt = " \
+    u @preprocess:@flow:ytic(1) lc bgnd, \
+ '' u 6:@flow:7:8:@baseline:@baseline+boxHeight:@link+1 with boxxyerror lc var, \
+ '' u 6:@baseline:(0):(boxLeftOvershoot):@link+1        with vectors as 1, \
+ '' u 6:@baseline:(0):(boxLeftOvershoot)                with vectors as 2, \
+ '' u 6:@baseline:($8-$6):(0)                           with vectors as 3, \
+ '' u 9:@baseline:(0):(boxRightOvershoot)               with vectors as 4, \
+ for [i=1:words(links)] NaN with boxes lc i title word(links, i)"
