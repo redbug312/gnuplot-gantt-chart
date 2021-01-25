@@ -10,13 +10,13 @@ set xtics 3
 set grid x y
 set key right bottom
 
-maxpacketperflow = 8
+maxpriorityperlink = 10
 
 # below are required variables for @gantt
 
-boxheight     = 1.0 / maxpacketperflow
+boxheight     = 1.0 / maxpriorityperlink
 boxovershootl = boxheight * 0
 boxovershootr = boxheight * 0.5
 
-load 'gantt-by-flow.fct'
+load 'gantt-by-link.fct'
 plot 'data/flowspan1.data' @gantt
