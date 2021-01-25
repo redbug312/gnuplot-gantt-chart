@@ -1,7 +1,9 @@
+SCRIPT = gnuplot/y-flow-packet.gpi
+
 .PHONY: start
 start:
-	gnuplot -p gnuplot/y-stream-frame.gpi
+	gnuplot -p $(SCRIPT)
 
 .PHONY: check
 check:
-	gnuplot -p gnuplot/y-stream-frame.gpi -
+	gnuplot -p $(SCRIPT) -
