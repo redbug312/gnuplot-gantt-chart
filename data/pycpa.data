@@ -1,0 +1,11 @@
+# 9 columns for each packet transmission:
+# task-name event (ignored) resource-name priority activate execute-start execute-end (ignored)
+T11  0  0  R1  0   0   0   5  0
+T11  1  0  R1  0   0   5  10  0
+T11  2  0  R1  0   0  10  15  0
+T11  3  0  R1  0  30  30  35  0
+T12  0  0  R1  1   0  15  24  0
+T12  1  0  R1  1   5  24  30  0
+T12  1  0  R1  1   5  35  38  0
+T12  2  0  R1  1  10  38  47  0
+T12  3  0  R1  1  30  47  56  0

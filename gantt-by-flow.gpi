@@ -4,7 +4,7 @@ set term pngcairo font 'Liberation Sans, 11' size 640, 480
 # set output 'gantt.png'
 
 set colorsequence podo
-set title 'Gannt Chart for Network Flows'
+set title 'Gantt Chart for Network Flows'
 set offsets 0.5,0.5,0.5,0.5
 set xtics 3
 set grid x y
@@ -19,4 +19,4 @@ boxovershootl = boxheight * 0
 boxovershootr = boxheight * 0.5
 
 load 'gnuplot/gantt-by-flow.fct'
-plot 'data/flowspan1.data' @gantt
+plot 'data/flowspan.data' @gantt

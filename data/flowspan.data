@@ -1,0 +1,22 @@
+# 9 columns for each packet transmission:
+# flow-name instance packet link-name priority arrive transmit-start transmit-end depart
+TSN0  0  0  [ES0,SW0]  0   0.0   0.0   1.5   3.0
+TSN0  0  1  [ES0,SW0]  0   0.0   1.5   3.0   4.5
+TSN0  0  0  [SW0,ES1]  0   1.5   1.5   3.0   3.0
+TSN1  0  0  [ES0,SW0]  0   0.0   3.0   4.5   6.0
+TSN0  0  1  [SW0,ES1]  0   3.0   3.0   4.5   4.5
+TSN1  0  1  [ES0,SW0]  0   0.0   4.5   6.0   7.5
+TSN1  0  0  [SW0,ES1]  0   4.5   4.5   6.0   6.0
+AVB0  0  0  [ES0,SW0]  1   0.0   6.0   7.5   9.0
+TSN1  0  1  [SW0,ES1]  0   6.0   6.0   7.5   7.5
+AVB0  0  1  [ES0,SW0]  1   0.0   7.5   9.0  10.5
+AVB0  0  0  [SW0,ES1]  1   7.5   7.5   9.0   9.0
+AVB0  0  2  [ES0,SW0]  1   0.0   9.0  10.5  12.0
+AVB0  0  1  [SW0,ES1]  1   9.0   9.0  10.5  10.5
+AVB0  0  3  [ES0,SW0]  1   0.0  10.5  12.0  13.5
+AVB0  0  2  [SW0,ES1]  1  10.5  10.5  12.0  12.0
+AVB0  0  4  [ES0,SW0]  1   0.0  12.0  13.5  15.0
+AVB0  0  3  [SW0,ES1]  1  12.0  12.0  13.5  13.5
+AVB0  0  5  [ES0,SW0]  1   0.0  13.5  15.0  16.5
+AVB0  0  4  [SW0,ES1]  1  13.5  13.5  15.0  15.0
+AVB0  0  5  [SW0,ES1]  1  15.0  15.0  16.5  16.5

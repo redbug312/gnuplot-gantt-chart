@@ -22,7 +22,7 @@ boxyhigh = '(@link-($5+0)*boxheight)'
 
 
 gantt = " \
-    u (flow_append(1), link_append(4), NaN):@flow:ytic(4) lc bgnd, \
+    u (flow_append(1), link_append(4), NaN):@link:ytic(4) lc bgnd, \
  '' u 6:@link:7:8:@boxylow:@boxyhigh:@flow+1           with boxxyerror lc var, \
  '' u 6:@boxylow:(0):(boxheight+boxovershootl):@flow+1 with vectors as 1, \
  '' u 6:@boxylow:(0):(boxheight+boxovershootl)         with vectors as 2, \
