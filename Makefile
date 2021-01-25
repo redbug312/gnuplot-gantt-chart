@@ -1,4 +1,4 @@
-SCRIPT = gnuplot/y-flow-packet.gpi
+SCRIPT = doc/gantt-by-flow.gpi
 
 .PHONY: start
 start:

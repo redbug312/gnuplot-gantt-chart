@@ -6,16 +6,16 @@ set output 'gantt.png'
 set colorsequence podo
 set title 'Gannt Chart for Network Flows'
 set offsets 0.5,0.5,0.5,0.5
-set xtics 4
+set xtics 3
 set grid x y
 set key right bottom
 
 
-maxPacketPerFlow = 8
+maxpacketperflow = 8
 
-boxHeight         = 1.0 / maxPacketPerFlow
-boxLeftOvershoot  = 1.0 / maxPacketPerFlow
-boxRightOvershoot = 1.0 / maxPacketPerFlow * 1.5
+boxheight     = 1.0 / maxpacketperflow
+boxovershootl = boxheight * 0
+boxovershootr = boxheight * 0.5
 
 
 load 'gantt-by-flow.fct'

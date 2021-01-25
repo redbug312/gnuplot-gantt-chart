@@ -17,15 +17,15 @@ link_id(w) = words(substr(links, 0, strstrt(links, strcol(w))-1))
 link = '(link_id(4))'  # used as macro
 
 
-preprocess = '(flow_append(1), link_append(4), NaN)'
-baseline = '(@flow-($3+1)*boxHeight)'
+boxylow  = '(@flow-($3+1)*boxheight)'
+boxyhigh = '(@flow-($3+0)*boxheight)'
 
 
 gantt = " \
-    u @preprocess:@flow:ytic(1) lc bgnd, \
- '' u 6:@flow:7:8:@baseline:@baseline+boxHeight:@link+1 with boxxyerror lc var, \
- '' u 6:@baseline:(0):(boxLeftOvershoot):@link+1        with vectors as 1, \
- '' u 6:@baseline:(0):(boxLeftOvershoot)                with vectors as 2, \
- '' u 6:@baseline:($8-$6):(0)                           with vectors as 3, \
- '' u 9:@baseline:(0):(boxRightOvershoot)               with vectors as 4, \
+    u (flow_append(1), link_append(4), NaN):@flow:ytic(1) lc bgnd, \
+ '' u 6:@flow:7:8:@boxylow:@boxyhigh:@link+1           with boxxyerror lc var, \
+ '' u 6:@boxylow:(0):(boxheight+boxovershootl):@link+1 with vectors as 1, \
+ '' u 6:@boxylow:(0):(boxheight+boxovershootl)         with vectors as 2, \
+ '' u 6:@boxylow:($8-$6):(0)                           with vectors as 3, \
+ '' u ($9==$8?$9:NaN):@boxyhigh:(0):(boxovershootr)    with vectors as 4, \
  for [i=1:words(links)] NaN with boxes lc i title word(links, i)"
