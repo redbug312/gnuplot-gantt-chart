@@ -1,7 +1,7 @@
 #!/usr/bin/env gnuplot
 reset session
 set term pngcairo font 'Liberation Sans, 11' size 640, 480
-set output 'gantt.png'
+# set output 'gantt.png'
 
 set colorsequence podo
 set title 'Gannt Chart for Network Flows'
@@ -18,5 +18,5 @@ boxheight     = 1.0 / maxpacketperflow
 boxovershootl = boxheight * 0
 boxovershootr = boxheight * 0.5
 
-load 'gantt-by-flow.fct'
+load 'gnuplot/gantt-by-flow.fct'
 plot 'data/flowspan1.data' @gantt

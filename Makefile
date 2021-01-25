@@ -1,9 +1,15 @@
-SCRIPT = doc/gantt-by-flow.gpi
+PNG = gantt-by-flow.png gantt-by-link.png
+
+
+all: $(PNG)
+
+%.png: %.gpi
+	gnuplot -p $< > $@
+
 
 .PHONY: start
-start:
-	gnuplot -p $(SCRIPT)
+start: gantt-by-link.png
 
-.PHONY: check
-check:
-	gnuplot -p $(SCRIPT) -
+.PHONY: clean
+clean:
+	$(RM) $(PNG)
