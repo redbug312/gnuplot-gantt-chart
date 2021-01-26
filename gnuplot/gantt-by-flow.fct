@@ -1,3 +1,4 @@
+#!/usr/bin/env gnuplot
 set style fill transparent solid 0.3 border lc black
 set style arrow 1 lc var filled size screen 0.03,15,90
 set style arrow 2 lc black empty size screen 0.03,15,90
