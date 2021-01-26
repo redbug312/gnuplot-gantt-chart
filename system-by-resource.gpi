@@ -1,0 +1,22 @@
+#!/usr/bin/env gnuplot
+reset session
+set term pngcairo font 'Liberation Sans, 11' size 640, 480
+# set output 'gantt.png'
+
+set colorsequence podo
+set title 'Gantt Chart for System Tasks'
+set offsets 0.5,0.5,0.5,0.5
+set xtics 5
+set grid x y
+set key right bottom
+
+maxpriorityperlink = 18
+
+# below are required variables for @gantt
+
+boxheight     = 1.0 / maxpriorityperlink
+boxovershootl = boxheight * 0
+boxovershootr = boxheight * 0.5
+
+load 'gnuplot/gantt-by-link.fct'
+plot 'data/pycpa.data' @gantt

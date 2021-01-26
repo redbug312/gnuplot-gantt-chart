@@ -1,4 +1,5 @@
-PNG = gantt-by-flow.png gantt-by-link.png
+PNG = network-by-flow.png network-by-link.png \
+	  system-by-task.png system-by-resource.png
 
 
 all: $(PNG)
@@ -13,3 +14,6 @@ start: gantt-by-link.png
 .PHONY: clean
 clean:
 	$(RM) $(PNG)
+
+
+/* vim: set ts=4 sw=4 */
