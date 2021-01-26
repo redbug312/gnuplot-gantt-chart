@@ -41,7 +41,7 @@ Columns 3, 5, 9 are optional; just fill them with zeros if any is absent.
 
 The data is `data/flowspan.data`. There are 3 flows named TSN0, TSN1 and AVB0 routed along the path [ES0, SW0, ES1]. All of them has 1 instance packetized and sent from ES0 at time 0.
 
-We can see end-to-end delays of the instances are 4.5, 7.5 and 16.5 respectively, and AVB0 have no chance to block other high-prioirity flows in this case.
+Two charts are manually combined side by side for convenience. We can see end-to-end delays of the instances are 4.5, 7.5 and 16.5 respectively, and AVB0 have no chance to block other high-prioirity flows in this case.
 
 ![network-joined](doc/network-joined.png)
 
@@ -49,7 +49,7 @@ We can see end-to-end delays of the instances are 4.5, 7.5 and 16.5 respectively
 
 The data is `data/pycpa.data`, modified from Gantt chart example (in matplotlib) of [PyCPA][pycpa]. There are 2 tasks T11 and T12 executing on a preemptive resource R1. T11 has a burst of 3 events at time 0 and then 1 event at time 30, while T12 is a dependent task of T11.
 
-We can see maximum delays of the events are 5 and 14 respectively, and 2nd event of T12 is preempted by 4th event of T11.
+Two charts are manually combined side by side for convenience. We can see maximum delays of the events are 5 and 14 respectively, and 2nd event of T12 is preempted by 4th event of T11.
 
 ![system-joined](doc/system-joined.png)
 
