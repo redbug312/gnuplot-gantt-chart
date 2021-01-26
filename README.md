@@ -43,8 +43,7 @@ The data is `data/flowspan.data`. There are 3 flows named TSN0, TSN1 and AVB0 ro
 
 We can see end-to-end delays of the instances are 4.5, 7.5 and 16.5 respectively, and AVB0 have no chance to block other high-prioirity flows in this case.
 
-![network-by-flow](doc/network-by-flow.png)
-![network-by-link](doc/network-by-link.png)
+![network-joined](doc/network-joined.png)
 
 ## Explained in System Scheduling
 
@@ -52,7 +51,6 @@ The data is `data/pycpa.data`, modified from Gantt chart example (in matplotlib)
 
 We can see maximum delays of the events are 5 and 14 respectively, and 2nd event of T12 is preempted by 4th event of T11.
 
-![system-by-task](doc/system-by-task.png)
-![system-by-resource](doc/system-by-resource.png)
+![system-joined](doc/system-joined.png)
 
 [pycpa]: https://pycpa.readthedocs.io/en/latest/
