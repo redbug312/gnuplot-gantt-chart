@@ -6,15 +6,16 @@ set style arrow 3 lc black nohead
 set style arrow 4 lc black nohead
 set key noautotitle
 
+SEP = ' '
 
 flows = ''
-flow_append(d) = strstrt(flows, strcol(d)) ? '' : flows=flows.' '.strcol(d)
-flow_id(w) = words(substr(flows, 0, strstrt(flows, strcol(w))-1))
+flow_append(d) = strstrt(flows, strcol(d).SEP) ? '' : flows=flows.SEP.strcol(d).SEP
+flow_id(w) = words(substr(flows, 0, strstrt(flows, strcol(w).SEP)-1))
 flow = '(flow_id(1))'  # used as macro
 
 links = ''
-link_append(d) = strstrt(links, strcol(d)) ? '' : links=links.' '.strcol(d)
-link_id(w) = words(substr(links, 0, strstrt(links, strcol(w))-1))
+link_append(d) = strstrt(links, strcol(d).SEP) ? '' : links=links.SEP.strcol(d).SEP
+link_id(w) = words(substr(links, 0, strstrt(links, strcol(w).SEP)-1))
 link = '(link_id(4))'  # used as macro
 
 
